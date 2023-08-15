@@ -1,0 +1,19 @@
+{
+  "name": "huellitas-back",
+  "version": "0.0.1",
+  "description": "back para veteriniaria huellitas proyecto rolling c44i",
+  "main": "index.js",
+  "scripts": {
+    "test": "\u001b[A\u001b[A\u001b[B\u001b[B"
+  },
+  "author": "grupo 5 comision 44i",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "moongose": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
