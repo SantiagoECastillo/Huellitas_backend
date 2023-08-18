@@ -112,8 +112,7 @@ const loginUsuario = async (req, res) => {
         error: null,
         data: {token}
     })
-    
-    
+
 }
 
 
