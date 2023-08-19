@@ -19,7 +19,8 @@ const usuarioSchema = new Schema({
     correo: {
         type: String,
         require: true,
-        unique: true
+        unique: true,
+        trim: true
     },
     contrasena: {
         type: String,
@@ -29,7 +30,8 @@ const usuarioSchema = new Schema({
     telefono: {
         type: Number,
         required: true,
-        length: 8
+        length: 8,
+        trim: true
     }
 },{versionKey: false});
 

@@ -1,15 +1,3 @@
-/*const http = require("http")
-
-const servidor = http.createServer((req, res) =>{
-    res.end("Se inicio el servidor");
-})
-
-const PORT = 3000;
-
-servidor.listen(PORT, () =>{
-    console.log(`servido corriendo en el puerto ${PORT}`);
-});*/
-
 const express = require("express");
 const app = express();
 const conectarDb = require('./src/db/mongodb');

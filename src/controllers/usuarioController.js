@@ -1,5 +1,5 @@
 
-const UsuarioModelo = require("../models/usuarios");
+const UsuarioModelo = require("../models/usuarios.modelo");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -10,14 +10,14 @@ const registrarUsuario = async (req, res) => {
     try {
         const {nombre, apellido, correo, contrasena, telefono} = req.body;
         const hash = await bcrypt.hash(contrasena, 10)
-        const usuario = new UsuarioModelo({
+        const nuevoUsuario = new UsuarioModelo({
             nombre,
             apellido,
             correo,
             contrasena: hash,
             telefono
         })
-        await usuario.save();
+        await nuevoUsuario.save();
         res.status(201).json("El usuario fue creado con exito");
     } catch (error) {
         res.status(400).json("Usuario no creado");
@@ -31,7 +31,6 @@ const obtenerUsuarios = async (req, res) => {
         res.json(usuarios);
     }catch (error) {
         res.status(400).json("Usuarios no encontrados");
-        /*res.status(500).json("Error en el servidor");*/
     }
 }
 
