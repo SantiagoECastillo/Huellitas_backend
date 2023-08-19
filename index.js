@@ -14,7 +14,7 @@ const express = require("express");
 const app = express();
 const conectarDb = require('./src/db/mongodb');
 const cors = require("cors");
-
+const comprobacionJWT = require("./src/middleware/comprobacionJWT");
 
 app.use(express.json()); //permite trabajar con documentos json
 app.use(express.urlencoded({extended: true})) //habilita poder recibir parametros desde una url (los param)
@@ -41,4 +41,5 @@ initApp();
 /*app.use("/api/usuarios", require("./src/routes/RutasUsuario"))*/
 app.use("/api", require("./src/routes/RutasUsuario"))
 app.use("/api/usuario", require("./src/routes/RutasUsuario"))
+app.use("/prot", comprobacionJWT, require("./src/routes/RutasAdmin"));
 
