@@ -32,6 +32,10 @@ const usuarioSchema = new Schema({
         required: true,
         length: 8,
         trim: true
+    },
+    rol:{
+        type: String,
+        trim: true
     }
 },{versionKey: false});
 

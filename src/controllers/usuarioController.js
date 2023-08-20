@@ -1,21 +1,20 @@
 
 const UsuarioModelo = require("../models/usuarios.modelo");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-
-/* PROBAR ESTA EN CASO DE QUE LA CREARUSUARIO NON FUNCIONE*/
+const CrearTokenAcceso = require("../libs/jwt");
 
 
 const registrarUsuario = async (req, res) => {
     try {
-        const {nombre, apellido, correo, contrasena, telefono} = req.body;
+        const {nombre, apellido, correo, contrasena, telefono, rol} = req.body;
         const hash = await bcrypt.hash(contrasena, 10)
         const nuevoUsuario = new UsuarioModelo({
             nombre,
             apellido,
             correo,
             contrasena: hash,
-            telefono
+            telefono,
+            rol
         })
         await nuevoUsuario.save();
         res.status(201).json("El usuario fue creado con exito");
@@ -23,6 +22,44 @@ const registrarUsuario = async (req, res) => {
         res.status(400).json("Usuario no creado");
         console.log(error);
     }
+}
+
+const loginUsuario = async (req, res) => {
+    const {correo, contrasena} = req.body;
+    try {
+        const usuarioEncontrado = await UsuarioModelo.findOne({correo});
+        if(!usuarioEncontrado){
+            return res.status(400).json("Usuario y/o Contraseña invalido");
+        }
+        
+        const comprobarContrasena = await bcrypt.compare(contrasena, usuarioEncontrado.contrasena);
+        if(!comprobarContrasena){
+            return res.status(400).json("Usuario y/o Contraseña invalido");
+        }
+        
+        /*Genero el token */
+        const token = await CrearTokenAcceso({id: usuarioEncontrado._id})
+        res.cookie('token', token)
+
+        res.status(200).json({
+            id: usuarioEncontrado._id,
+            nombre: usuarioEncontrado.nombre,
+            apellido: usuarioEncontrado.apellido,
+            correo: usuarioEncontrado.correo
+        });
+
+        
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+}
+
+const logout = async (req, res) => {
+    res.cookie('token', "", {
+        expires: new Date(0)
+    })
+    return res.sendStatus(200);
+    
 }
 
 const obtenerUsuarios = async (req, res) => {
@@ -85,42 +122,12 @@ const eliminarUsuario = async (req, res) => {
     }
 }
 
-const loginUsuario = async (req, res) => {
-    const usuario = await UsuarioModelo.findOne({correo: req.body.correo});
-    
-    if(!usuario){
-        return res.status(400).json("Usuario y/o Contraseña invalido");
-    }else{
-        const comprobarContrasena = await bcrypt.compare(req.body.contrasena, usuario.contrasena);
-        if(!comprobarContrasena){
-            return res.status(400).json("Usuario y/o Contraseña invalido");
-        }
-    }
-
-    const token = jwt.sign({
-        id: usuario._id,
-        nombre: usuario.nombre,
-        apellido: usuario.apellido
-        //rol: usuario.rol /*ver como agregar rol */
-    }, 
-        process.env.SECRET_KEY,
-        {expiresIn: "1d"}
-    );
-    
-    res.header("auth-token", token).json({
-        error: null,
-        data: {token}
-    })
-
-}
-
-
 
 module.exports = {
     registrarUsuario,
     loginUsuario,
+    logout,
     obtenerUsuarios,
-    obtenerUsuarioPorId,
     modificarUsuario,
     eliminarUsuario
 }
