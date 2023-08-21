@@ -28,7 +28,6 @@ initApp();
 
 //Ingreso de las rutas
 app.use("/api", require("./src/routes/RutasUsuario"))
-/*app.use("/api", comprobacionJWT, require("./src/routes/RutasAdmin"));*/
 app.use("/api", valicadionToken, require("./src/routes/RutasAdmin"));
 
 

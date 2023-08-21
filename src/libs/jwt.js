@@ -10,10 +10,8 @@ function CrearTokenAcceso(payload){
                 if(err) reject(err)
                 resolve(token)
             }
-        
         )
-    })
-    
+    })  
 }
 
 module.exports = CrearTokenAcceso

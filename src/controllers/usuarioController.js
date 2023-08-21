@@ -7,6 +7,7 @@ const CrearTokenAcceso = require("../libs/jwt");
 const registrarUsuario = async (req, res) => {
     try {
         const {nombre, apellido, correo, contrasena, telefono, rol} = req.body;
+
         const hash = await bcrypt.hash(contrasena, 10)
         const nuevoUsuario = new UsuarioModelo({
             nombre,
@@ -17,7 +18,19 @@ const registrarUsuario = async (req, res) => {
             rol
         })
         await nuevoUsuario.save();
-        res.status(201).json("El usuario fue creado con exito");
+        /*res.status(201).json("El usuario fue creado con exito");*/
+        
+        /*----------datos que usara el frontend----------- */
+        const token = await CrearTokenAcceso({id: nuevoUsuario._id})
+        res.cookie('token', token)
+
+        res.status(200).json({
+            id: nuevoUsuario._id,
+            nombre: nuevoUsuario.nombre,
+            apellido: nuevoUsuario.apellido,
+            correo: nuevoUsuario.correo
+        });
+        /*--------------------- */
     } catch (error) {
         res.status(400).json("Usuario no creado");
         console.log(error);
