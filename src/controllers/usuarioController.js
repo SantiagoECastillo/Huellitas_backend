@@ -18,8 +18,7 @@ const registrarUsuario = async (req, res) => {
             rol
         })
         await nuevoUsuario.save();
-        /*res.status(201).json("El usuario fue creado con exito");*/
-        
+
         /*----------datos que usara el frontend----------- */
         const token = await CrearTokenAcceso({id: nuevoUsuario._id})
         res.cookie('token', token)
@@ -28,7 +27,8 @@ const registrarUsuario = async (req, res) => {
             id: nuevoUsuario._id,
             nombre: nuevoUsuario.nombre,
             apellido: nuevoUsuario.apellido,
-            correo: nuevoUsuario.correo
+            correo: nuevoUsuario.correo,
+            rol: nuevoUsuario.rol
         });
         /*--------------------- */
     } catch (error) {
@@ -54,11 +54,13 @@ const loginUsuario = async (req, res) => {
         const token = await CrearTokenAcceso({id: usuarioEncontrado._id})
         res.cookie('token', token)
 
+        /*VER DE SACAR ESTO MAS ADELANTE, COMPROBAR SI CON LOS DATOS ENVIADO POR EL TOKEN BASTA */
         res.status(200).json({
             id: usuarioEncontrado._id,
             nombre: usuarioEncontrado.nombre,
             apellido: usuarioEncontrado.apellido,
-            correo: usuarioEncontrado.correo
+            correo: usuarioEncontrado.correo,
+            rol: nuevoUsuario.rol
         });
 
         

@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 
+/*Esto sera para proteger las rutas de los usarios, tengo que comprobar esto antes de pedir turno  */
 const valicadionToken = async (req, res, next) => {
     const { token } = req.cookies;
 

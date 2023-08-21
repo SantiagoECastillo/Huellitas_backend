@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const usurioController = require("../controllers/usuarioController");
-/*AGREGAR VALIDACION DE SCHEMA */
+const validadorSchema = require("../middleware/validacionSchema");
+const validar = require("../validatorSchema/usuarioSchema")
+
 
 router.get("/usuarios", usurioController.obtenerUsuarios);
-router.post("/registro", usurioController.registrarUsuario);
-router.post("/login", usurioController.loginUsuario);
+router.post("/registro", validadorSchema(validar.validacionRegistro), usurioController.registrarUsuario);
+router.post("/login", validadorSchema(validar.validacionLogin), usurioController.loginUsuario);
 
 
 module.exports = router;
