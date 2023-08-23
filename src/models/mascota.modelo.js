@@ -26,6 +26,11 @@ const mascotaSchema = new Schema({
   edad: {
     type: Number,
     require: true
+  },
+  dueno: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'usuarios',
+    require: true
   }
 }, { versionKey: false });
 
