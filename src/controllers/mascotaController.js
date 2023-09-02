@@ -38,14 +38,14 @@ const obtenerMascotaPorId = async (req, res) => {
   // Creacion de una cancha
 const agregarMascota = async (req, res) => {
     try {
-        const {nombre, especie, raza, genero, edad} = req.body
+        const {nombreMascota, especieMascota, tipoDeRaza, sexoMascota, edadMascota} = req.body
         const nuevaMascota = new MascotaModel({
-            nombre,
-            especie,
-            raza,
-            genero,
-            edad,
-            dueno: req.user.id
+            nombreMascota,
+            especieMascota,
+            tipoDeRaza,
+            sexoMascota,
+            edadMascota,
+            /*dueno: req.user.id*/
         })
         await nuevaMascota.save();
         res.status(201).json(nuevaMascota);

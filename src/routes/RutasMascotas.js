@@ -11,7 +11,7 @@ router.get('/mascotas', valicadionToken, mascotaController.obtenerMascotas);
 /*router.get('/mascotas/:id', valicadionToken, mascotaController.obtenerMascotaPorId);*/
 router.get('/mascotas/:id', valicadionToken, mascotaController.obtenerMascotasPorDueño);
 
-router.post('/mascotas', valicadionToken, mascotaController.agregarMascota);
+router.post('/mascotas', valicadionToken, mascotaController.agregarMascota); /*valicadionToken */
 
 router.put('/mascotas/:id', valicadionToken, mascotaController.actualizarMascota);
 

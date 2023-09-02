@@ -2,38 +2,39 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const mascotaSchema = new Schema({
-  nombre: {
+  nombreMascota: {
     type: String,
     require: true,
     trim: true
   },
-  especie: {
+  especieMascota: {
     type: String,
     require: true,
     trim: true
   },
-  raza: {
+  tipoDeRaza: {
     type: String,
     require: true,
     trim: true,
     maxLength: 15
   },
-  genero: {
+  sexoMascota: {
     type: String,
     require: true,
     trim: true,
   },
-  edad: {
+  edadMascota: {
     type: Number,
     require: true
   },
   dueno: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'usuarios',
-    require: true
+    /*require: true*/
   }
 }, { versionKey: false });
 
 const MascotaModel = mongoose.model("mascotas", mascotaSchema);
 
 module.exports = MascotaModel;
+
