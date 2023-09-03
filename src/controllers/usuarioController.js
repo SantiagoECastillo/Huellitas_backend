@@ -60,11 +60,12 @@ const loginUsuario = async (req, res) => {
             nombre: usuarioEncontrado.nombre,
             apellido: usuarioEncontrado.apellido,
             correo: usuarioEncontrado.correo,
-            rol: nuevoUsuario.rol
+            rol: usuarioEncontrado.rol
         });
 
         
     } catch (error) {
+        console.log(error);
         res.status(500).json({message: error.message});
     }
 }
@@ -111,7 +112,7 @@ const modificarUsuario = async (req, res) => {
             usuario.contrasena = req.body.contrasena;
             usuario.telefono = req.body.telefono;
             const usuarioEditado = usuario.save();
-            res.status(200).json("El usuario fue editado con exito");
+            /*res.status(200).json("El usuario fue editado con exito");*/
             res.json(usuarioEditado);
         }else{
             res.status(404).json("Usuario no encontrado");

@@ -27,8 +27,8 @@ const initApp = async () => {
 initApp();
 
 //Ingreso de las rutas
-//app.use("/api", require("./src/routes/RutasUsuario"))
+app.use("/api", require("./src/routes/RutasUsuario"))
 //app.use("/api", valicadionToken, require("./src/routes/RutasAdmin"));
-app.use("/api", require("./src/routes/RutasMascotas"))
+//app.use("/api", require("./src/routes/RutasMascotas"))
 
 
