@@ -7,6 +7,11 @@ const CrearTokenAcceso = require("../libs/jwt");
 const registrarUsuario = async (req, res) => {
     try {
         const {nombre, apellido, correo, contrasena, telefono, rol} = req.body;
+        
+        const verificarCorreo = await UsuarioModelo.findOne({correo});
+        if(verificarCorreo){
+            return res.status(400).json(["El correo ingresado ya tiene una cuenta"]);
+        }
 
         const hash = await bcrypt.hash(contrasena, 10)
         const nuevoUsuario = new UsuarioModelo({
@@ -42,12 +47,12 @@ const loginUsuario = async (req, res) => {
     try {
         const usuarioEncontrado = await UsuarioModelo.findOne({correo});
         if(!usuarioEncontrado){
-            return res.status(400).json("Usuario y/o Contraseña invalido");
+            return res.status(400).json(["Usuario y/o Contraseña invalido"]);
         }
         
         const comprobarContrasena = await bcrypt.compare(contrasena, usuarioEncontrado.contrasena);
         if(!comprobarContrasena){
-            return res.status(400).json("Usuario y/o Contraseña invalido");
+            return res.status(400).json(["Usuario y/o Contraseña invalido"]);
         }
         
         /*Genero el token */
