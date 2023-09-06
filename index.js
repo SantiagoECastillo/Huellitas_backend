@@ -1,33 +1,44 @@
+const http = require("http");
+
+// Crear servidor. Recibe un callback con dos parametros
+
+// const servidor = http.createServer((req, res) => { //req ---> request, res ---> response
+//     res.end("Hola desde node");
+// });
+
+
+// const PORT = 3000;
+
+// servidor.listen(PORT, () =>{
+//     console.log(`Servidor puesto en marcha en el puerto ${PORT}`);
+
+// });
+
 const express = require("express");
 const app = express();
-const conectarDb = require('./src/db/mongodb');
-const cors = require("cors");
-const cookieParser = require("cookie-parser");
-const valicadionToken = require("./src/middleware/validacionToken");
 
-app.use(express.json()); //permite trabajar con documentos json
-app.use(express.urlencoded({extended: true})) //habilita poder recibir parametros desde una url (los param)
-app.use(cors());
-app.use(cookieParser()); 
-require('dotenv').config();
+const PORT = 3000;
 
-const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Servidor puesto en marcha en el puerto ${PORT}`);
+});
 
-const initApp = async () => {
-    try {
-        app.listen(PORT, () =>{
-            console.log(`servido corriendo en el puerto ${PORT}`);
-        });
-        await conectarDb();
-    } catch (error) {
-        console.log("Erro al iniciar aplicacion")
+// Crear una ruta en express
+
+app.get("/", (req, res) => {
+    res.send("Hola mundo desde Express");
+});
+
+app.get("/api/turnos", (req, res) => {
+    res.send(JSON.stringify(turnos));
+});
+
+app.get("/api/turnos:id", (req, res) => {
+    let id = req.params.id;
+    let turno = turnos.find((turno) => turno.id == id);
+    if (turno) {
+        res.send(turno);
+    } else {
+        res.status(404).send("Turno no encontrado")
     }
-}
-
-initApp();
-
-//Ingreso de las rutas
-app.use("/api", require("./src/routes/RutasUsuario"))
-app.use("/api", valicadionToken, require("./src/routes/RutasAdmin"));
-
-
+});
