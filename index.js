@@ -1,44 +1,29 @@
 const http = require("http");
 
-// Crear servidor. Recibe un callback con dos parametros
-
-// const servidor = http.createServer((req, res) => { //req ---> request, res ---> response
-//     res.end("Hola desde node");
-// });
-
-
-// const PORT = 3000;
-
-// servidor.listen(PORT, () =>{
-//     console.log(`Servidor puesto en marcha en el puerto ${PORT}`);
-
-// });
-
 const express = require("express");
-const app = express();
+const app = express(); //Inicializar express
+const connectDb = require("./src/db/mongodb") //Importar la conexion a la base de datos
 
-const PORT = 3000;
+app.use(express.json()); //Permite recibir objetos en formato JSON
+app.use(express.urlencoded({ extended: true})); //Permite recibir parametros y queris en las rutas
 
-app.listen(PORT, () => {
-    console.log(`Servidor puesto en marcha en el puerto ${PORT}`);
-});
+const PORT = 8080;
+
+const initApp = async () => {
+    try{
+        app.listen(PORT, () => {
+            console.log(`Servidor puesto en marcha en el puerto ${PORT}`);
+    });
+        await connectDb();
+    }
+    catch (error) {
+        console.log("Error al iniciar la aplicación")
+    }
+};
+
+initApp();
 
 // Crear una ruta en express
+app.use("/api", require("./src/routes/RutasTurnos"));
 
-app.get("/", (req, res) => {
-    res.send("Hola mundo desde Express");
-});
-
-app.get("/api/turnos", (req, res) => {
-    res.send(JSON.stringify(turnos));
-});
-
-app.get("/api/turnos:id", (req, res) => {
-    let id = req.params.id;
-    let turno = turnos.find((turno) => turno.id == id);
-    if (turno) {
-        res.send(turno);
-    } else {
-        res.status(404).send("Turno no encontrado")
-    }
-});
+// http://localhost:8080/api/turnos
