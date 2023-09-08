@@ -1,16 +1,20 @@
 const express = require("express");
 const router = express.Router();
-const turnosControllers = require("../controllers/turnoController")
+const turnosController = require("../controllers/turnosController")
 
 
 //Rutas del GET
+router.get("/turnos",turnosController.obtenerTurnos)
 
-router.get("/turnos",turnosControllers.obtenerTurnos)
-
-router.get("/turnos/:id", turnosControllers.obtenerTurnoPorId)
+router.get("/turnos/:id", turnosController.obtenerTurnoPorId)
 
 //Ruta del POST
-router.post("/turno", turnosControllers.agendarTurno);
+router.post("/turno", turnosController.agendarTurno);
 
+//Ruta del PUT
+router.put("/turno/:id", turnosController.actualizarTurno);
+
+//Ruta del DELETE
+router.delete("/turno/:id", turnosController.borrarTurno);
 
 module.exports = router;

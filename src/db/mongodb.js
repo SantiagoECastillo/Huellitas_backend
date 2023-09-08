@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 
-//Concetar a la base de datos
+//Conectar a la base de datos
+
 const connectDb = async () => {
     try {
-        mongoose.set('strictQuery', false); //soluciona error de strictQuery
+        // mongoose.set('strictQuery', false); //soluciona error de strictQuery
         await mongoose.connect('mongodb://localhost:27017/Turnos', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
