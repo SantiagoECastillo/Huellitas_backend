@@ -1,10 +1,10 @@
 const express = require("express");
-const app = express(); //Inicializar express
-const connectDb = require("./src/db/mongodb") //Importar la conexion a la base de datos
+const app = express();
+const connectDb = require("./src/db/mongodb");
 const cors = require('cors');
 
-app.use(express.json()); //Permite recibir objetos en formato JSON
-app.use(express.urlencoded({ extended: true})); //Permite recibir parametros y queris en las rutas
+app.use(express.json());
+app.use(express.urlencoded({ extended: true}));
 app.use(cors())
 
 const PORT = 8080;
@@ -24,6 +24,6 @@ const initApp = async () => {
 initApp();
 
 // Crear una ruta en express
-app.use("/api", require("./src/routes/RutasTurnos"));
+app.use("/api", require("./src/routes/RutasMascotas"));
 
-// http://localhost:8080/api/turnos
+// http://localhost:8080/api/mascotas
