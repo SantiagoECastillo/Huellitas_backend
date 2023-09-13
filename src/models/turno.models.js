@@ -18,5 +18,5 @@ const turnoSchema = new Schema({
 
 }, {versionKey: false});
 
-const TurnoModel = mongoose.model("Turnos", turnoSchema);
+const TurnoModel = mongoose.model("turnos", turnoSchema);
 module.exports = TurnoModel;

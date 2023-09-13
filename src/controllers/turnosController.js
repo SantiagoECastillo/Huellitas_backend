@@ -33,9 +33,9 @@ const agendarTurno = async (req, res) => {
     try {
         const turno = new TurnoModel(req.body);
         await turno.save();
-        console.log("Turno Agendado");
+        res.status(201).json("Turno Agendado");
     } catch (error) {
-        res.status("Error al agendar el turno");
+        res.status(409).json("Error al agendar el turno");
     }
 };
 

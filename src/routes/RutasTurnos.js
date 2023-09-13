@@ -4,7 +4,7 @@ const turnosController = require("../controllers/turnosController")
 
 
 //Rutas del GET
-router.get("/turnos",turnosController.obtenerTurnos)
+router.get("/turnos", turnosController.obtenerTurnos)
 
 router.get("/turnos/:id", turnosController.obtenerTurnoPorId)
 

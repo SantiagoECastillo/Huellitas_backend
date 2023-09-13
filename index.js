@@ -1,10 +1,11 @@
-
 const express = require("express");
 const app = express(); //Inicializar express
 const connectDb = require("./src/db/mongodb") //Importar la conexion a la base de datos
+const cors = require('cors');
 
 app.use(express.json()); //Permite recibir objetos en formato JSON
 app.use(express.urlencoded({ extended: true})); //Permite recibir parametros y queris en las rutas
+app.use(cors())
 
 const PORT = 8080;
 
