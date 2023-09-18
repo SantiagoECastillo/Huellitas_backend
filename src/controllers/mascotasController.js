@@ -35,7 +35,7 @@ const agregarMascota = async (req, res) => {
         await mascota.save();
         res.status(201).json("Mascota Agregada");
     } catch (error) {
-        res.status(409).json("Error al agregar la mascota");
+        res.status(404).json("Error al agregar la mascota");
     }
 };
 
