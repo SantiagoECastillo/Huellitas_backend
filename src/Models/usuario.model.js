@@ -1,28 +1,30 @@
 const mongoose = require("mongoose");
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 
 const usuarioSchema = new Schema({
     nombre: {
         type: String,
         required: true,
-        minLength: 3,
-        maxLength: 20,
+        maxLength: 30,
+        minLength: 2,
         trim: true
     },
     apellido: {
         type: String,
         required: true,
-        minLength: 3,
-        maxLength: 20,
+        maxLength: 30,
+        minLength: 2,
         trim: true
     },
     correo: {
         type: String,
         require: true,
         unique: true,
+        maxLength: 80,
+        minLength: 7,
         trim: true
     },
-    contrasena: {
+    password: {
         type: String,
         required: true,
         minLength: 8,
@@ -33,12 +35,13 @@ const usuarioSchema = new Schema({
         length: 8,
         trim: true
     },
-    rol:{
+    rol: {
         type: String,
         trim: true
     }
-},{versionKey: false});
+},
+    { versionKey: false });
 
-const UsuarioModelo = mongoose.model("usuarios", usuarioSchema);
+const UsuarioModel = mongoose.model("usuarios", usuarioSchema);
 
-module.exports = UsuarioModelo;
+module.exports = UsuarioModel

@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-//Concetar a la base de datos
 const connectDb = async () =>{
     try {
         mongoose.set('strictQuery', false); //soluciona error de strictQuery
@@ -10,7 +9,7 @@ const connectDb = async () =>{
         });
         console.log("Conexion exitosa a la base de datos");
     } catch (error) {
-        console.log(error);
+        console.log("Error al conectar");
     }
 }
 

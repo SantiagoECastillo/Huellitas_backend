@@ -1,33 +1,32 @@
 const express = require("express");
 const app = express();
-const conectarDb = require('./src/db/mongodb');
+const connectDb = require("./src/db/mongodb");
 const cors = require("cors");
-const cookieParser = require("cookie-parser");
-const valicadionToken = require("./src/middleware/validacionToken");
+require("dotenv").config()
+const comprobacionJwt = require("./src/midleware/comprobacionJwt");
 
-app.use(express.json()); //permite trabajar con documentos json
-app.use(express.urlencoded({extended: true})) //habilita poder recibir parametros desde una url (los param)
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true}));
 app.use(cors());
-app.use(cookieParser()); 
-require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
-
 const initApp = async () => {
     try {
-        app.listen(PORT, () =>{
-            console.log(`servido corriendo en el puerto ${PORT}`);
+        app.listen(PORT, () => {
+            console.log(`Servidor puesto en marcha en el puerto ${PORT}`);
         });
-        await conectarDb();
+        await connectDb();
     } catch (error) {
-        console.log("Erro al iniciar aplicacion")
+        console.log("Error al iniciar la aplicación");
     }
-}
+};
 
 initApp();
 
-//Ingreso de las rutas
-app.use("/api", require("./src/routes/RutasUsuario"))
-app.use("/api", valicadionToken, require("./src/routes/RutasAdmin"));
+
+app.use("/api", require("./src/Routes/RutasUsuarios"));
+app.use("/protegida", comprobacionJwt, require("./src/Routes/RutasAdmin"));
 
 
+// http://localhost:8080/api/usuarios
