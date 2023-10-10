@@ -3,7 +3,7 @@ const app = express();
 const connectDb = require("./src/db/mongodb");
 const cors = require("cors");
 require("dotenv").config()
-const comprobacionJwt = require("./src/midleware/comprobacionJwt");
+const comprobacionJwt = require("./src/middleware/comprobacionJwt");
 
 
 app.use(express.json());
