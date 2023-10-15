@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 
-//Conectar a la base de datos
-
-const connectDb = async () => {
+const connectDb = async () =>{
     try {
         // mongoose.set('strictQuery', false); //soluciona error de strictQuery
         await mongoose.connect('mongodb://127.0.0.1:27017/VeterinariaHuellitas', {

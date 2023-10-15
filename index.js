@@ -1,29 +1,32 @@
 const express = require("express");
-const app = express(); //Inicializar express
-const connectDb = require("./src/db/mongodb") //Importar la conexion a la base de datos
-const cors = require('cors');
+const app = express();
+const connectDb = require("./src/db/mongodb");
+const cors = require("cors");
+require("dotenv").config()
+const comprobacionJwt = require("./src/middleware/comprobacionJwt");
 
-app.use(express.json()); //Permite recibir objetos en formato JSON
-app.use(express.urlencoded({ extended: true})); //Permite recibir parametros y queris en las rutas
-app.use(cors())
 
-const PORT = 8080;
+app.use(express.json());
+app.use(express.urlencoded({ extended: true}));
+app.use(cors());
 
+const PORT = process.env.PORT || 3000;
 const initApp = async () => {
-    try{
+    try {
         app.listen(PORT, () => {
             console.log(`Servidor puesto en marcha en el puerto ${PORT}`);
-    });
+        });
         await connectDb();
-    }
-    catch (error) {
-        console.log("Error al iniciar la aplicación")
+    } catch (error) {
+        console.log("Error al iniciar la aplicación");
     }
 };
 
 initApp();
 
-// Crear una ruta en express
-app.use("/api", require("./src/routes/RutasTurnos"));
 
-// http://localhost:8080/api/turnos
+app.use("/api", require("./src/Routes/RutasUsuarios"));
+app.use("/protegida", comprobacionJwt, require("./src/Routes/RutasAdmin"));
+
+
+// http://localhost:8080/api/usuarios
