@@ -1,33 +1,29 @@
 const express = require("express");
-const app = express();
-const conectarDb = require('./src/db/mongodb');
-const cors = require("cors");
-const cookieParser = require("cookie-parser");
-const valicadionToken = require("./src/middleware/validacionToken");
+const app = express(); //Inicializar express
+const connectDb = require("./src/db/mongodb") //Importar la conexion a la base de datos
+const cors = require('cors');
 
-app.use(express.json()); //permite trabajar con documentos json
-app.use(express.urlencoded({extended: true})) //habilita poder recibir parametros desde una url (los param)
-app.use(cors());
-app.use(cookieParser()); 
-require('dotenv').config();
+app.use(express.json()); //Permite recibir objetos en formato JSON
+app.use(express.urlencoded({ extended: true})); //Permite recibir parametros y queris en las rutas
+app.use(cors())
 
-const PORT = process.env.PORT || 3000;
+const PORT = 8080;
 
 const initApp = async () => {
-    try {
-        app.listen(PORT, () =>{
-            console.log(`servido corriendo en el puerto ${PORT}`);
-        });
-        await conectarDb();
-    } catch (error) {
-        console.log("Erro al iniciar aplicacion")
+    try{
+        app.listen(PORT, () => {
+            console.log(`Servidor puesto en marcha en el puerto ${PORT}`);
+    });
+        await connectDb();
     }
-}
+    catch (error) {
+        console.log("Error al iniciar la aplicación")
+    }
+};
 
 initApp();
 
-//Ingreso de las rutas
-app.use("/api", require("./src/routes/RutasUsuario"))
-app.use("/api", valicadionToken, require("./src/routes/RutasAdmin"));
+// Crear una ruta en express
+app.use("/api", require("./src/routes/RutasTurnos"));
 
-
+// http://localhost:8080/api/turnos
