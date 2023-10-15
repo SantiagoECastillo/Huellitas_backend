@@ -24,9 +24,7 @@ const initApp = async () => {
 
 initApp();
 
-
 app.use("/api", require("./src/Routes/RutasUsuarios"));
 app.use("/protegida", comprobacionJwt, require("./src/Routes/RutasAdmin"));
-
 
 // http://localhost:8080/api/usuarios
