@@ -6,15 +6,15 @@ const mascotasController = require("../controllers/mascotasController")
 //Rutas del GET
 router.get("/mascotas", mascotasController.obtenerMascotas)
 
-router.get("/mascotas/:id", mascotasController.obtenerMascotaPorId)
+router.get("/mascotas/:id", mascotasController.obtenerMascotasPorId)
 
 //Ruta del POST
-router.post("/mascota", mascotasController.agregarMascota);
+router.post("/mascota", mascotasController.registrarMascota);
 
 //Ruta del PUT
-router.put("/mascota/:id", mascotasController.actualizarMascota);
+router.put("/mascota/:id", mascotasController.modificarMascota);
 
 //Ruta del DELETE
-router.delete("/mascota/:id", mascotasController.borrarMascota);
+router.delete("/mascota/:id", mascotasController.eliminarMascota);
 
 module.exports = router;

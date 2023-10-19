@@ -12,7 +12,7 @@ const obtenerMascotas = async (req, res) => {
     }
 };
 
-const obtenerMascotaPorId = async (req, res) => {
+const obtenerMascotasPorId = async (req, res) => {
     try {
         const id = req.params.id
         const mascota = await MascotaModel.findById(id);
@@ -29,7 +29,7 @@ const obtenerMascotaPorId = async (req, res) => {
 
 //Creacion de Mascota
 
-const agregarMascota = async (req, res) => {
+const registrarMascota = async (req, res) => {
     try {
         const mascota = new MascotaModel(req.body);
         await mascota.save();
@@ -41,7 +41,7 @@ const agregarMascota = async (req, res) => {
 
 //Actualizar Mascota
 
-const actualizarMascota = async (req, res) => {
+const modificarMascota = async (req, res) => {
     try {
         const id = req.params.id;
         const mascota = await MascotaModel.findById(id);
@@ -63,7 +63,7 @@ const actualizarMascota = async (req, res) => {
 
 //Borrar Mascota
 
-const borrarMascota = async (req, res) => {
+const eliminarMascota = async (req, res) => {
     try {
         const id = req.params.id;
         const mascota = await MascotaModel.findById(id);
@@ -80,8 +80,8 @@ const borrarMascota = async (req, res) => {
 
 module.exports = {
     obtenerMascotas,
-    obtenerMascotaPorId,
-    agregarMascota,
-    actualizarMascota,
-    borrarMascota
+    obtenerMascotasPorId,
+    registrarMascota,
+    modificarMascota,
+    eliminarMascota
 };

@@ -12,7 +12,7 @@ const obtenerTurnos = async (req, res) => {
     }
 };
 
-const obtenerTurnoPorId = async (req, res) => {
+const obtenerTurnosPorId = async (req, res) => {
     try {
         const id = req.params.id
         const turno = await TurnoModel.findById(id);
@@ -41,7 +41,7 @@ const agendarTurno = async (req, res) => {
 
 //Actualizar un turno
 
-const actualizarTurno = async (req, res) => {
+const modificarTurno = async (req, res) => {
     try {
         const id = req.params.id;
         const turno = await TurnoModel.findById(id);
@@ -49,9 +49,8 @@ const actualizarTurno = async (req, res) => {
             turno.fecha = req.body.fecha;
             turno.hora = req.body.hora;
             turno.plan = req.body.plan;
-            const turnoActualizado = await turno.save();
+            await turno.save();
             res.status(200).json("Turno Actualizado")
-            res.json(turnoActualizado)
         } else {
             res.status(404).json("Turno no encontrado");
         }
@@ -80,8 +79,8 @@ const borrarTurno = async (req, res) => {
 
 module.exports = {
     obtenerTurnos,
-    obtenerTurnoPorId,
+    obtenerTurnosPorId,
     agendarTurno,
-    actualizarTurno,
+    modificarTurno,
     borrarTurno
 };
