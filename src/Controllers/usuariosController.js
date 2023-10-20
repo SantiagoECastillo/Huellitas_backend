@@ -122,6 +122,7 @@ const loginUsuario = async (req, res) => {
         id: user._id,
         nombre: user.nombre,
         apellido: user.apellido,
+        correo: user.correo,
         rol: user.rol
     },
         process.env.SECRET_KEY,
