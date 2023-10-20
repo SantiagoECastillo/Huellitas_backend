@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const mascotasController = require("../controllers/mascotasController")
+const mascotasController = require("../Controllers/mascotasController")
 
 
 //Rutas del GET

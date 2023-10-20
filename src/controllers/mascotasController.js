@@ -1,4 +1,4 @@
-const MascotaModel = require("../models/mascota.models");
+const MascotaModel = require("../Models/mascota.model");
 
 // GET
 
