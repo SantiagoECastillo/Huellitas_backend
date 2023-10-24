@@ -1,4 +1,4 @@
-const TurnoModel = require("../models/turno.models");
+const TurnoModel = require("../Models/turno.models");
 
 // GET
 
