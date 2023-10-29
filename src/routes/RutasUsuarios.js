@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const usuariosController = require("../Controllers/usuariosController")
+const usuariosController = require("src/Controllers/usuariosController.js")
 
 //Rutas del GET
 router.get("/usuarios", usuariosController.obtenerUsuarios);
