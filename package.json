@@ -4,7 +4,8 @@
   "description": "back para veteriniaria huellitas proyecto rolling c44i",
   "main": "index.js",
   "scripts": {
-    "test": "\u001b[A\u001b[A\u001b[B\u001b[B"
+    "test": "\u001b[A\u001b[A\u001b[B\u001b[B",
+    "start": "node index.js"
   },
   "author": "grupo 5 comision 44i",
   "license": "ISC",
