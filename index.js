@@ -39,9 +39,9 @@ const initApp = async () => {
 
 initApp();
 
-app.use("/api", require("./src/routes/RutasUsuarios"));
-app.use("/api", require("./src/routes/RutasMascotas"));
-app.use("/api", require("./src/routes/RutasTurnos"));
-app.use("/protegida", comprobacionJwt, require("./src/routes/RutasAdmin"));
+app.use("/api", require("./routes/RutasUsuarios"));
+app.use("/api", require("./routes/RutasMascotas"));
+app.use("/api", require("./routes/RutasTurnos"));
+app.use("/protegida", comprobacionJwt, require("./routes/RutasAdmin"));
 
 // http://localhost:8080/api/usuarios
