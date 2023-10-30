@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
-const connectDb = require("./src/db/mongodb");
+const connectDb = require("./db/mongodb");
 const cors = require("cors");
 require("dotenv").config()
-const comprobacionJwt = require("./src/middleware/comprobacionJwt");
+const comprobacionJwt = require("./middleware/comprobacionJwt");
 
 
 app.use(express.json());

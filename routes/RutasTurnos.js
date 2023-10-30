@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const turnosController = require("src/Controllers/turnosController.js")
+const turnosController = require("../Controllers/turnosController")
 
 
 //Rutas del GET
