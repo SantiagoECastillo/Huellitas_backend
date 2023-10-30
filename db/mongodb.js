@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const connectDb = async () => {
     try {
         // mongoose.set('strictQuery', false); //soluciona error de strictQuery
-        //await mongoose.connect("mongodb://localhost:27017/VeterinariaHuellitas", {
-        await mongoose.connect('mongodb+srv://huellitas:veterinariahuellitas@veterinariahuellitas.val3vvb.mongodb.net/VeterinariaHuellitas', {
+        await mongoose.connect("mongodb://localhost:27017/VeterinariaHuellitas", {
+        // await mongoose.connect('mongodb+srv://huellitas:veterinariahuellitas@veterinariahuellitas.val3vvb.mongodb.net/VeterinariaHuellitas', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
