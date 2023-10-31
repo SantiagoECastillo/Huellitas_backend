@@ -10,7 +10,7 @@ const obtenerUsuarios = async (req, res) => {
         const usuarios = await UsuarioModel.find();
         res.json(usuarios);
     } catch (error) {
-        res.status(400).json("Usuario no encontrado");
+       // res.status(400).json("Usuario no encontrado");
         res.status(500).json("Error en el servidor");
     };
 
@@ -28,7 +28,7 @@ const obtenerUsuariosPorId = async (req, res) => {
             res.status(404).json("Usuario no encontrado");
         }
     } catch (error) {
-        res.status(400).json("Usuarios no encontrados");
+        //res.status(400).json("Usuarios no encontrados");
         res.status(500).json("Error en el servidor");
     };
 };
@@ -55,7 +55,7 @@ const registrarUsuario = async (req, res) => {
 
     } catch (error) {
         res.status(400).json("Usuario no registrado");
-        res.status(500).json("Error en el servidor");
+        //res.status(500).json("Error en el servidor");
     }
 };
 
@@ -78,7 +78,7 @@ const modificarUsuario = async (req, res) => {
             res.status(404).json("Usuario no encontrado");
         }
     } catch (error) {
-        res.status(400).json("Usuario no modificado");
+        //res.status(400).json("Usuario no modificado");
         res.status(500).json("Error en el servidor");
     }
 };
@@ -97,7 +97,7 @@ const eliminarUsuario = async (req, res) => {
             res.status(404).json("Usuario no encontrado");
         }
     } catch (error) {
-        res.status(400).json("Usuario no eliminado");
+        //res.status(400).json("Usuario no eliminado");
         res.status(500).json("Error en el servidor");
     }
 };

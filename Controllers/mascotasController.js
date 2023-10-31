@@ -8,7 +8,7 @@ const obtenerMascotas = async (req, res) => {
         res.json(mascotas);
     } catch (error) {
         res.status(400).json("Mascota no encontrada");
-        res.status(500).json("Error en el servidor")
+       // res.status(500).json("Error en el servidor")
     }
 };
 
@@ -22,7 +22,7 @@ const obtenerMascotasPorId = async (req, res) => {
             res.status(404).json("Mascota no encontrada")
         }
     } catch (error) {
-        res.status(400).json("Mascotas no encontradas")
+        //res.status(400).json("Mascotas no encontradas")
         res.status(500).json("Error en el servidor")
     }
 };
@@ -56,7 +56,7 @@ const modificarMascota = async (req, res) => {
             res.status(404).json("Mascota no encontrada");
         }
     } catch (error) {
-        res.status(400).json("Mascota no actualizada");
+       // res.status(400).json("Mascota no actualizada");
         res.status(500).json("Error en el servidor");
     }
 };

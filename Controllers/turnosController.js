@@ -8,7 +8,7 @@ const obtenerTurnos = async (req, res) => {
         res.json(turnos);
     } catch (error) {
         res.status(400).json("Turno no encontrado");
-        res.status(500).json("Error en el servidor")
+       // res.status(500).json("Error en el servidor")
     }
 };
 
@@ -22,7 +22,7 @@ const obtenerTurnosPorId = async (req, res) => {
             res.status(404).json("Turno no encontrado")
         }
     } catch (error) {
-        res.status(400).json("Turnos no encontrados")
+        //res.status(400).json("Turnos no encontrados")
         res.status(500).json("Error en el servidor")
     }
 };
@@ -55,7 +55,7 @@ const modificarTurno = async (req, res) => {
             res.status(404).json("Turno no encontrado");
         }
     } catch (error) {
-        res.status(400).json("Turno no actualizado");
+        //res.status(400).json("Turno no actualizado");
         res.status(500).json("Error en el servidor");
     }
 };
