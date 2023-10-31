@@ -8,7 +8,6 @@ const obtenerTurnos = async (req, res) => {
         res.json(turnos);
     } catch (error) {
         res.status(400).json("Turno no encontrado");
-       // res.status(500).json("Error en el servidor")
     }
 };
 
@@ -16,13 +15,12 @@ const obtenerTurnosPorId = async (req, res) => {
     try {
         const id = req.params.id
         const turno = await TurnoModel.findById(id);
-        if (cancha) {
+        if (turno) {
             res.json(turno);
         } else {
             res.status(404).json("Turno no encontrado")
         }
     } catch (error) {
-        //res.status(400).json("Turnos no encontrados")
         res.status(500).json("Error en el servidor")
     }
 };
@@ -55,7 +53,6 @@ const modificarTurno = async (req, res) => {
             res.status(404).json("Turno no encontrado");
         }
     } catch (error) {
-        //res.status(400).json("Turno no actualizado");
         res.status(500).json("Error en el servidor");
     }
 };
